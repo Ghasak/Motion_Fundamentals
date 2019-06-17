@@ -84,7 +84,10 @@ def Engine():
     vxb,vyb  = [200,300]
     vxc,vyc  = [323,100]
     xa = ya = xb = yb = xc = yc = 0
-
+    # Creating your particles with initial conditions
+    a = Particle(xa, ya, 20,colors[1],vxa,vya)
+    b = Particle(xb,yb, 50, colors[2],vxb,vyb)
+    c = Particle(xc,yc, 100, colors[3],vxc,vyc)
     # --------------------------------------------------------
     while True:
         for event in pygame.event.get():
@@ -94,13 +97,11 @@ def Engine():
         # screen.set_colorkey((255,0,255))
         # screen.set_alpha(1)
         time_passed = clock.tick(60)  # This is a timer ,In a 1000 millesecond / 60 (max frame) = no. of
-        a = Particle(xa, ya, 20,colors[1],vxa,vya)
-        b = Particle(xb,yb, 50, colors[2],vxb,vyb)
-        c = Particle(xc,yc, 100, colors[3],vxc,vyc)
+
         a.display()
         b.display()
         c.display()
-        xa,ya ,vxa,vya = a.move(time_passed)
+        xa,ya,vxa,vya  = a.move(time_passed)
         xb,yb,vxb,vyb  = b.move(time_passed)
         xc,yc,vxc,vyc  = c.move(time_passed)
 
