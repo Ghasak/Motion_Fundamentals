@@ -173,7 +173,7 @@ def Engine():
         for event in pygame.event.get():
             if event.type == QUIT:
                 exit()
-        screen.fill(colors[0])
+        screen.fill((138,43,226))
         Environment.centerlines(screen)
         # screen.set_colorkey((255,0,255))
         # screen.set_alpha(1)
@@ -187,11 +187,7 @@ def Engine():
         A.point_to_point((B.x,B.y))
         C.point_to_point((D.x,D.y))
 
-
-
-
         pygame.display.update()
-
 
 
 # --------------------------------------------------------
