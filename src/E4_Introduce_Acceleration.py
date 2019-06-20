@@ -63,6 +63,8 @@ class Particle:
         self.thickness = 3 # 1 to not fill, and 0 to fill
         self.VELOCITY_X = VELOCITY_X
         self.VELOCITY_Y = VELOCITY_Y
+        self.ACCELERATION_X = 0.1
+        self.ACCELERATION_Y = 0.1
         self.SwitchOne = True
 
 
@@ -103,9 +105,12 @@ class Particle:
             self.magnitude = (((self.x - self.P1x)**2)+((self.y - self.P1y)**2))**(0.5)
             self.heading_Vector_x = (P1x-self.x)/self.magnitude
             self.heading_Vector_y = (P1y-self.y)/self.magnitude
+            self.VELOCITY_X += self.ACCELERATION_X
+            self.VELOCITY_Y += self.ACCELERATION_Y
+
             self.x += self.VELOCITY_X * self.heading_Vector_x * self.time_passed_seconds
             self.y += self.VELOCITY_Y * self.heading_Vector_y * self.time_passed_seconds
-            print(self.x,self.P1x)
+            #print(self.x,self.P1x)
 
             if int(self.x) == int(self.P1x) or int(self.y) == int(self.P1y):
                 self.SwitchOne = False
@@ -115,9 +120,12 @@ class Particle:
             self.heading_Vector_x = (P2x-self.x)/self.magnitude
             self.heading_Vector_y = (P2y-self.y)/self.magnitude
 
+            self.VELOCITY_X += self.ACCELERATION_X
+            self.VELOCITY_Y += self.ACCELERATION_Y
+
             self.x += self.VELOCITY_X * self.heading_Vector_x * self.time_passed_seconds
             self.y += self.VELOCITY_Y * self.heading_Vector_y * self.time_passed_seconds
-            print(self.x,self.P2x)
+            #print(self.x,self.P2x)
 
             if int(self.x) == int(self.P2x) or int(self.y) == int(self.P2y):
                 self.VELOCITY_X = 0.0
@@ -154,7 +162,9 @@ class Environment():
         pygame.draw.line(screen,white, (0,HEIGHT/2), (WIDTH,HEIGHT/2),7)
         pygame.draw.line(screen,white, (WIDTH/2,0), (WIDTH/2, HEIGHT),7)
 
-
+        for tick_axis in range(100):
+            pygame.draw.line(screen,white,(tick_axis*100,(HEIGHT/2)+15),(tick_axis*100,(HEIGHT/2)-15),5)
+            pygame.draw.line(screen,white,((WIDTH/2)+15,tick_axis*100),((WIDTH/2)-15,tick_axis*100),5)
     def draw_point(self):
         # Vector is a point in space relative the
         pygame.draw.circle(screen, pink, (int(self.x), int(self.y)), self.size, self.thickness)
@@ -167,6 +177,7 @@ class Environment():
         self.P2 = P2
         '''- Creating an arrow to connect between the two points'''
         pygame.draw.line(screen,lightred, (self.x,self.y), (self.P2[0],self.P2[1]),5)
+
 
 # --------------------------------------------------------------------------------
 # Adding a semi class for vectors for teaching purposes, once mastered we can use
@@ -199,11 +210,7 @@ def Test_Vector():
     add_line("P2- Vector magnitude calculation")
     print(AB.get_magnitude())
     # --------------------------------------------------------
-
-
 # --------------------------------------------------------------------------------
-
-
 WIDTH = 1800
 HEIGHT = 800
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
@@ -224,7 +231,8 @@ def Engine():
     D = Environment(1400,700, 10,0)
     E = Environment(600,400,10,0)
 
-    ParticleX = Particle(1700,400,50,yellow,100,100)
+
+    ParticleX = Particle(1700,400,30,yellow,100,100)
     ParticleY = Particle(600,400,50,lightred,100,100)
     ParticleZ = Particle(100,200,50,pink,100,100)
     ParticleU = Particle(30,35,30,lightgreen,100,100)
@@ -253,6 +261,7 @@ def Engine():
         C.draw_point()
         D.draw_point()
         E.draw_point()
+
 
 
         #ParticleA.move(time_passed)
