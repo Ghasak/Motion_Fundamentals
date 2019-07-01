@@ -1,6 +1,9 @@
-# Moving Car Simulator -1-
+# Motion Fundamentals
 
-This program is developing a motion in 2d-Top View for a Car, using Pygame library.
+A developed 2D engine to describe the motion of objects in 2D plan.
+including vector space, Motion laws, Collisions and many others.
+The motion fundamentals is used to develope all the simulators which are necessary
+for modeling the motion of objects in 2D plan.
 
 ## Getting Started
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
@@ -10,7 +13,7 @@ What things you need to install the software and how to install them
 pip install requirements.txt
 ```
 
-## Python Version
+## Simulator Output
 
 I have used Python3.7 Anaconda. and pygame 1.9.6
 See the results:
@@ -24,8 +27,8 @@ See the results:
 ## License
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
 ## Acknowledgments
-* Hat tip to anyone whose code was used
+The engine is under development
 
 ## Inspiration
-Following similar project at:
-* [contributors] (http://rmgi.blog./pygame-2d-car-tutorial.html )
+Unity, Manime, and from processing.org.
+
