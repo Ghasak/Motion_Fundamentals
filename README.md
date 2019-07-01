@@ -16,7 +16,7 @@ I have used Python3.7 Anaconda. and pygame 1.9.6
 See the results:
 
 
-![](https://github.com/Ghasak/Moving_Car_Simulator_1/blob/master/movingcar.gif)
+![](./Resources/Simulator.gif)
 ## Authors
 
 * **Ghasak Ibrahim** - *Initial work* -
