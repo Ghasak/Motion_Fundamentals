@@ -138,15 +138,21 @@ class Particle:
 
 
 class Environment():
+    counter = 0
+    Time = 0
+    Second = 0
+    Minute = 0
+    Hour = 0
+    Day = 0
     def __init__(self, x, y, size, thickness):
         self.x = x
         self.y = y
         self.point = (x,y)
         self.size = size
         self.thickness = thickness
-        counter = 10
 
 
+    @staticmethod
     def centerlines(self):
         for i in range(100):
             #pygame.draw.line(screen, black, (0, i*100), (i*100, HEIGHT), 5)
@@ -170,6 +176,7 @@ class Environment():
         for tick_axis in range(100):
             pygame.draw.line(screen,white,(tick_axis*100,(HEIGHT/2)+15),(tick_axis*100,(HEIGHT/2)-15),5)
             pygame.draw.line(screen,white,((WIDTH/2)+15,tick_axis*100),((WIDTH/2)-15,tick_axis*100),5)
+
     def draw_point(self):
         # Vector is a point in space relative the
         pygame.draw.circle(screen, pink, (int(self.x), int(self.y)), self.size, self.thickness)
@@ -190,54 +197,47 @@ class Environment():
             # screen.blit(myfont.render(text, True, lightgreen), (WIDTH/2, HEIGHT/2))
             time_text = str(time_since_started)
             screen.blit(myfont2.render(time_text, True, white), (1600, 100))
-            Time = time_since_started
-            Second = time_since_started
-            Minute = 0
-            Hour = 0
-            Day = 0
+
             # Fonts
             Font = pygame.font.SysFont("Trebuchet MS", 25)
 
             # Day
-            DayFont = Font.render("Days:" + str(Day).zfill(2), 1, white)
+            DayFont = Font.render("Days:" + str(Environment.Day).zfill(2), 1, white)
             DayFontR = DayFont.get_rect()
             DayFontR.center = (975, 20)
             # Hour
-            HourFont = Font.render("Hours:" + str(Hour).zfill(2), 1, white)
+            HourFont = Font.render("Hours:" + str(Environment.Hour).zfill(2), 1, white)
             HourFontR = HourFont.get_rect()
             HourFontR.center = (1075, 20)
             # Minute
-            MinuteFont = Font.render("Minutes:" + str(Minute).zfill(2), 1, white)
+            MinuteFont = Font.render("Minutes:" + str(Environment.Minute).zfill(2), 1, white)
             MinuteFontR = MinuteFont.get_rect()
             MinuteFontR.center = (1190, 20)
             # Second
-            SecondFont = Font.render("Seconds:" + (str(Second).zfill(2)), 1, white)
+            SecondFont = Font.render("Seconds:" + (str(Environment.Second).zfill(2)), 1, white)
             SecondFontR = SecondFont.get_rect()
             SecondFontR.center = (1317, 20)
-
-
-
             #Timer
         #    while Time==0: this caused the crash !
             #time.sleep(1)
-            Second += 1
+            Environment.Second += 1
             screen.blit(SecondFont, SecondFontR)
             screen.blit(MinuteFont, MinuteFontR)
             screen.blit(HourFont, HourFontR)
             screen.blit(DayFont, DayFontR)
 
-            if Second == 60:
-                Second = 0
-                Minute=Minute+1
-            if Minute == 60:
-                Minute = 0
-                Second = 0
-                Hour=Hour+1
-            if Hour==24:
-                Hour=0
-                Second = 0
-                Minutes=0
-                Day=Day+1
+            if Environment.Second == 60:
+                Environment.Second = 0
+                Environment.Minute=Environment.Minute+1
+            if Environment.Minute == 60:
+                Environment.Minute = 0
+                Environment.Second = 0
+                Environment.Hour=Environment.Hour+1
+            if Environment.Hour==24:
+                Environment.Hour=0
+                Environment.Second = 0
+                Environment.Minutes=0
+                Environment.Day=Environment.Day+1
 
 # --------------------------------------------------------------------------------
 # Adding a semi class for vectors for teaching purposes, once mastered we can use
