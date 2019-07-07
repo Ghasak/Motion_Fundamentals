@@ -140,7 +140,7 @@ class Particle:
 class Environment():
     counter = 0
     Time = 0
-    Second = 0
+    Second = 1
     Minute = 0
     Hour = 0
     Day = 0
@@ -191,8 +191,6 @@ class Environment():
         pygame.draw.line(screen,lightred, (self.x,self.y), (self.P2[0],self.P2[1]),5)
 
     def timer_features(time_since_started):
-
-
             # text = str(counter).rjust(3) if counter > 0 else 'boom!'
             # screen.blit(myfont.render(text, True, lightgreen), (WIDTH/2, HEIGHT/2))
             time_text = str(time_since_started)
@@ -202,15 +200,15 @@ class Environment():
             Font = pygame.font.SysFont("Trebuchet MS", 25)
 
             # Day
-            DayFont = Font.render("Days:" + str(Environment.Day).zfill(2), 1, white)
+            DayFont = Font.render("Hours:" + str(Environment.Day).zfill(2), 1, white)
             DayFontR = DayFont.get_rect()
             DayFontR.center = (975, 20)
             # Hour
-            HourFont = Font.render("Hours:" + str(Environment.Hour).zfill(2), 1, white)
+            HourFont = Font.render("Minutes:" + str(Environment.Hour).zfill(2), 1, white)
             HourFontR = HourFont.get_rect()
             HourFontR.center = (1075, 20)
             # Minute
-            MinuteFont = Font.render("Minutes:" + str(Environment.Minute).zfill(2), 1, white)
+            MinuteFont = Font.render("Seconds:" + str(Environment.Minute).zfill(2), 1, white)
             MinuteFontR = MinuteFont.get_rect()
             MinuteFontR.center = (1190, 20)
             # Second
@@ -221,7 +219,8 @@ class Environment():
         #    while Time==0: this caused the crash !
             #time.sleep(1)
             Environment.Second += 1
-            screen.blit(SecondFont, SecondFontR)
+            #Environment.Second = int(time_since_started)
+            #screen.blit(SecondFont, SecondFontR)
             screen.blit(MinuteFont, MinuteFontR)
             screen.blit(HourFont, HourFontR)
             screen.blit(DayFont, DayFontR)
@@ -308,6 +307,7 @@ def Engine():
         Environment.centerlines(screen)
         # screen.set_colorkey((255,0,255))
         # screen.set_alpha(1)
+
         seconds = (pygame.time.get_ticks()-start_ticks)/1000 # How many seconds passed since your started
         minutes = seconds/60
         hours   = minutes/60
