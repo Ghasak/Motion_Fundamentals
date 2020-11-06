@@ -312,7 +312,7 @@ def Engine():
         minutes = seconds/60
         hours   = minutes/60
         time_passed = clock.tick(60)  # This is a timer ,In a 1000 millesecond / 60 (max frame) = no. of
-        print(seconds)
+        print(f'Now we are running = {seconds}')
 
         A.point_to_point((B.x,B.y))
         A.point_to_point((C.x,C.y))
